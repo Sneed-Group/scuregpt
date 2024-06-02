@@ -1,0 +1,38 @@
+{
+  "name": "securegpt",
+  "version": "1.0.0",
+  "description": "Secure Electron-based ChatGPT",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "npx electron-packager --platform linux,win32 --arch x64,arm64 ."
+  },
+  "repository": "https://github.com/electron/electron-quick-start",
+  "keywords": [
+    "Electron",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "Sneed Group",
+  "license": "SPL-R5",
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.5",
+    "@electron-forge/maker-deb": "^6.0.5",
+    "@electron-forge/maker-flatpak": "^6.0.5",
+    "@electron-forge/maker-rpm": "^6.0.5",
+    "@electron-forge/maker-squirrel": "^6.0.5",
+    "@electron-forge/maker-zip": "^6.0.5",
+    "electron": "^30.0.8",
+    "electron-forge-maker-appimage": "^24.6.3",
+    "electron-packager": "^17.1.2"
+  },
+  "dependencies": {
+    "cross-fetch": "^3.1.5",
+    "electron-chrome-extensions": "^3.10.0",
+    "electron-squirrel-startup": "^1.0.1",
+    "electron-tabs": "^1.0.1"
+  }
+}

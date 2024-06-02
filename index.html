@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'">
+    <title>F-Stopium</title>
+    <link href="./styles.css" rel="stylesheet">
+  </head>
+  <body>
+    <div id="navBar">
+    <button id="nwBtn">📄</button>
+    <input id="txtUrl" placeholder="Put the website here" name="url" type="text" onkeypress="clickPress(event)" />
+    <button onclick="go(); return false;" id="goBtn">✅</button>
+    <button onclick="stop(); return false;" id="stopBtn">🛑</button> 
+    <button onclick="back(); return false;" id="backBtn">⬅️</button>
+    <button onclick="forward(); return false;" id="forwardBtn">➡️</button>
+    </div>
+    <tab-group new-tab-button="true" sortable="true">
+    <webview id="foo" autosize plugins disablewebsecurity></webview>
+    </tab-group>
+    <script src="node_modules/electron-tabs/dist/electron-tabs.js"></script>
+    <script type="text/javascript" src="./userscript/userscripts.js"></script>
+    <script type="text/javascript" src="./config.js"></script>
+    <script type="text/javascript" src="./libbrowz.js"></script>
+  </body>
+</html>
