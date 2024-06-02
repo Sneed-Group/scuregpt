@@ -9,19 +9,37 @@
   </head>
   <body>
     <div id="navBar">
-    <button id="nwBtn">📄</button>
-    <input id="txtUrl" placeholder="Put the website here" name="url" type="text" onkeypress="clickPress(event)" />
-    <button onclick="go(); return false;" id="goBtn">✅</button>
-    <button onclick="stop(); return false;" id="stopBtn">🛑</button> 
-    <button onclick="back(); return false;" id="backBtn">⬅️</button>
-    <button onclick="forward(); return false;" id="forwardBtn">➡️</button>
-    </div>
-    <tab-group new-tab-button="true" sortable="true">
-    <webview id="foo" autosize plugins disablewebsecurity></webview>
-    </tab-group>
-    <script src="node_modules/electron-tabs/dist/electron-tabs.js"></script>
-    <script type="text/javascript" src="./userscript/userscripts.js"></script>
-    <script type="text/javascript" src="./config.js"></script>
-    <script type="text/javascript" src="./libbrowz.js"></script>
+    <div id="gptResponse"></div>
+    <input id="txt" placeholder="Put the request here" name="url" type="text" onkeypress="clickPress(event)" />
+    <button onclick="go(document.getElementById('txt').value); return false;" id="goBtn">✅</button>
+    <script>
+      function go(q) {
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://cdn.jsdelivr.net/npm/@kudoai/chatgpt.js@2.9.3/dist/chatgpt.min.js');
+        xhr.onload = function () {
+          if (xhr.status === 200) {
+            var chatgptJS = document.createElement('script');
+            chatgptJS.textContent = xhr.responseText;
+            document.head.append(chatgptJS);
+            return (async () => {
+              const response = await yourCode(q);
+              clearSiteData("https://chat.openai.com")
+              clearSiteData("https://api.openai.com")
+              clearSiteData("https://openai.com")
+              clearSiteData("https://microsoft.com")
+              document.getElementById("gptResponse").innerHTML = `<p>${response}</p><hr>`
+              return response
+            });
+          }
+        };
+        xhr.send();
+      }
+
+      async function yourCode(q) {
+          chatgpt.clearChats();
+          const response = await chatgpt.askAndGetReply(q);
+          return response;
+      }
+    </script>
   </body>
 </html>
