@@ -15,7 +15,7 @@
     <script>
       function go(q) {
         let xhr = new XMLHttpRequest();
-        xhr.open('GET', 'https://cdn.jsdelivr.net/npm/@kudoai/chatgpt.js@2.9.3/dist/chatgpt.min.js');
+        xhr.open('GET', 'chatgpt.min.js');
         xhr.onload = function () {
           if (xhr.status === 200) {
             var chatgptJS = document.createElement('script');
